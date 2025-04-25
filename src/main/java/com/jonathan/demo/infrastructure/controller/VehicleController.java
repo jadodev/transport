@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -32,5 +33,11 @@ public class VehicleController {
     @GetMapping("/all")
     public ResponseEntity<List<ResponseVehicleDto>> getAllVehicles(){
         return  ResponseEntity.ok(vehicleApplication.getAll());
+    }
+
+    @GetMapping("/nearby")
+    public CompletableFuture<ResponseEntity<ResponseVehicleDto>> nearby(@RequestParam double lon, @RequestParam double lat, @RequestParam double radius) {
+        return vehicleApplication.findVehicleNear(lon, lat, radius)
+                .thenApply(ResponseEntity::ok);
     }
 }

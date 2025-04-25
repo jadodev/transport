@@ -6,6 +6,7 @@ public class ResponseVehicleDto {
     private Long id;
     private String brand;
     private VehicleStatus status;
+    private double distance;
 
     public ResponseVehicleDto() {}
 
@@ -37,5 +38,13 @@ public class ResponseVehicleDto {
 
     public void setStatus(VehicleStatus status) {
         this.status = status;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 }
